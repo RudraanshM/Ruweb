@@ -495,7 +495,7 @@
         <!-- Tabs -->
         <div class="tabs" id="tabsContainer">
             <button class="tab active" data-id="0" onclick="switchTab(0)">
-                📄 New Tab
+                 New Tab
                 <button class="tab-close" onclick="closeTab(event, 0)">×</button>
             </button>
             <button class="new-tab-btn" onclick="addNewTab()">+</button>
@@ -557,14 +557,14 @@
     <script>
         // ---------- Search engines (deep-link templates) ----------
         const SEARCH_ENGINES = {
-            duckduckgo: { name: 'DuckDuckGo', icon: '🦆', url: 'https://duckduckgo.com/?q=' },
-            google:     { name: 'Google',     icon: '🔍', url: 'https://www.google.com/search?q=' },
-            bing:       { name: 'Bing',       icon: '🔎', url: 'https://www.bing.com/search?q=' },
-            brave:      { name: 'Brave',      icon: '🦁', url: 'https://search.brave.com/search?q=' },
-            yahoo:      { name: 'Yahoo',      icon: '🟣', url: 'https://search.yahoo.com/search?p=' },
-            ecosia:     { name: 'Ecosia',     icon: '🌳', url: 'https://www.ecosia.org/search?q=' },
-            startpage:  { name: 'Startpage',  icon: '🛡️', url: 'https://www.startpage.com/sp/search?query=' },
-            yandex:     { name: 'Yandex',     icon: '🔴', url: 'https://yandex.com/search/?text=' }
+            duckduckgo: { name: 'DuckDuckGo', icon: 'D', url: 'https://duckduckgo.com/?q=' },
+            google:     { name: 'Google',     icon: 'G', url: 'https://www.google.com/search?q=' },
+            bing:       { name: 'Bing',       icon: 'B', url: 'https://www.bing.com/search?q=' },
+            brave:      { name: 'Brave',      icon: 'B', url: 'https://search.brave.com/search?q=' },
+            yahoo:      { name: 'Yahoo',      icon: 'Y', url: 'https://search.yahoo.com/search?p=' },
+            ecosia:     { name: 'Ecosia',     icon: 'E', url: 'https://www.ecosia.org/search?q=' },
+            startpage:  { name: 'Startpage',  icon: 'S', url: 'https://www.startpage.com/sp/search?query=' },
+            yandex:     { name: 'Yandex',     icon: 'Y', url: 'https://yandex.com/search/?text=' }
         };
 
         let selectedEngine = localStorage.getItem('browser_search_engine') || 'duckduckgo';
@@ -695,7 +695,7 @@
             newTab.className = 'tab active';
             newTab.setAttribute('data-id', newId);
             newTab.innerHTML = `
-                📄 New Tab
+                 New Tab
                 <button class="tab-close" onclick="closeTab(event, ${newId})">×</button>
             `;
             newTab.onclick = () => switchTab(newId);
@@ -740,7 +740,7 @@
             return tabs.find(t => t.id === currentTabId);
         }
 
-        // ---------- Omnibox suggestions (DuckDuckGo Instant Answer - just for typeahead) ----------
+
         async function handleSearch(e) {
             const query = e.target.value.trim();
 
@@ -789,7 +789,7 @@
             }
         }
 
-        // ---------- Navigation ----------
+
         function navigateTo() {
             let input = document.getElementById('urlBar').value.trim();
             if (!input) return;
@@ -830,8 +830,7 @@
             openInRealBrowser(url, label);
         }
 
-        // Opens the URL in an actual new browser tab, since most real sites
-        // block being embedded in an iframe (X-Frame-Options / CSP).
+       
         function openInRealBrowser(url, label) {
             const loadingBar = document.getElementById('loadingBar');
             loadingBar.style.width = '50%';
@@ -855,8 +854,8 @@
             if (wasBlocked) {
                 container.innerHTML = `
                     <div class="opened-page">
-                        <div class="icon">🚫</div>
-                        <h1>Pop-up blocked</h1>
+                        <div class="icon"></div>
+                        <h1>Redirected</h1>
                         <div class="url-display">${heading}</div>
                         <div class="actions">
                             <button onclick="openInRealBrowser('${url}', '${(label||'').replace(/'/g, "\\'")}')">Try Again</button>
@@ -868,8 +867,8 @@
             } else {
                 container.innerHTML = `
                     <div class="opened-page">
-                        <div class="icon">↗️</div>
-                        <h1>Opened in a new tab</h1>
+                        <div class="icon"></div>
+                        <h1>redirected</h1>
                         <div class="url-display">${heading}</div>
                         <div class="actions">
                             <button onclick="openInRealBrowser('${url}', '${(label||'').replace(/'/g, "\\'")}')">Open Again</button>
